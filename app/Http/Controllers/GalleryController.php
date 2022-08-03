@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gallery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
-class AdminController extends Controller
+class GalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $gallery = Gallery::all();
+        return view('admin.gallery.index', compact('gallery'));
     }
 
     /**
@@ -23,7 +26,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.gallery.create');
     }
 
     /**
@@ -34,7 +37,17 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $gallery = new Gallery;
+        if($request->hasFile('picture'))
+        {
+            $file = $request->file('picture');
+            $extension = $file->getClientOriginalExtension();
+            $filname = time().'.'.$extension;
+            $file->move('uploads/gallery/', $filname);
+            $gallery->picture = $filname;
+        }
+        $gallery->save();
+        return redirect()->back()->with('status', 'Gallery added successfully');
     }
 
     /**
@@ -79,6 +92,16 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $gallery = Gallery::find($id);
+        
+        $destination = 'uploads/gallery/'.$gallery->picture;
+        
+        if (File::exists($destination)) 
+        {
+            File::delete($destination);
+        }
+
+        $gallery->delete();
+        return redirect()->back()->with('status', 'Gallery deleted successfully');
     }
 }

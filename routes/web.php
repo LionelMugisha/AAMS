@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AlumniController;
+use App\Http\Controllers\LandingController;
+use App\Http\Controllers\MemberController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LandingController::class,'index']);
+
+Route::get('admin', [AdminController::class, 'index']);
+
+Route::get('member', [MemberController::class, 'index']);
+
+Route::get('alumni', [AlumniController::class, 'index']);
+

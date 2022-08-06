@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlumniController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\LandingController;
@@ -38,9 +39,10 @@ Route::delete('admin/gallery/delete-gallery/{id}', [GalleryController::class, 'd
 
 
 
-
-
 Route::get('member', [MemberController::class, 'index']);
 
 Route::get('alumni', [AlumniController::class, 'index']);
 
+
+
+Route::get('login', [LoginController::class, 'index']);

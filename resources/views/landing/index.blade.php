@@ -24,7 +24,7 @@
                         </a>
                     </div>
                     <div> 
-                        <a href="#" style="font-family: 'Roboto';"
+                        <a href="{{ url('/login') }}" style="font-family: 'Roboto';"
                         class="font-bold text-xs md:text-xl md:mr-10 mr-4 text-gray-100">Login
                         </a>
                     </div>

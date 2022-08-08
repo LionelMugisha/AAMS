@@ -17,6 +17,13 @@
                         <a href="{{ url('login') }}" style="font-family: 'Roboto';"
                         class="font-bold text-xs md:text-xl md:mr-10 mr-4 text-gray-100">Login
                         </a>
+                    </div> 
+                    <div class="dropdown">
+                        <button onclick="myFunction()" class="dropbtn font-bold text-xs md:text-xl md:mr-10 mr-4 text-gray-100">Register As</button>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a href="{{ url('membersignup') }}">Member</a>
+                            <a href="{{ url('alumnisignup') }}">Alumni</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -49,9 +56,28 @@
                         </button>
                     </div>
             </form>
-            <p class="mt-8 text-xs font-light text-center text-gray-700"> Don't have an account? <a href="#"
-                    class="font-medium text-indigo-600 hover:underline">Sign up</a></p>
         </div>
     </div>
+
+<script>
+    function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
+
 @endsection
 

@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlumniController;
+use App\Http\Controllers\AlumniRegistrationController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\MemberRegistrationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,5 +46,9 @@ Route::get('member', [MemberController::class, 'index']);
 Route::get('alumni', [AlumniController::class, 'index']);
 
 
-
+// Login Routes
 Route::get('login', [LoginController::class, 'index']);
+
+//User Registration Routes
+Route::get('/alumnisignup', [AlumniRegistrationController::class, 'index']);
+Route::get('/membersignup', [MemberRegistrationController::class, 'index']);

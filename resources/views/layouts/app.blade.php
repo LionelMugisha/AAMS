@@ -18,7 +18,8 @@
   
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
-
+        <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
 

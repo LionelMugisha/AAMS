@@ -1,8 +1,7 @@
-@extends('admin.layouts.app')
-
-@section('contents')
+<x-maindashboard>
 
 <div id="main" class="main-content flex-1 bg-white mt-12 md:mt-2 pb-24 md:pb-5">
+@can('admin')
     <div class="flex flex-wrap mt-28">
         <div class="w-full md:w-1/2 xl:w-1/3 p-6">
             <!--Metric Card-->
@@ -95,6 +94,10 @@
             <!--/Metric Card-->
         </div>
     </div>
+@endcan
+    
 </div>
 
-@endsection
+</x-maindashboard>
+
+

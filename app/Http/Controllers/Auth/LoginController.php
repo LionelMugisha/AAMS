@@ -27,6 +27,24 @@ class LoginController extends Controller
         //
     }
 
+    public function login()
+    {
+        // dd('done');
+        //validate the request
+        $attributes = request()->validate([
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required'
+        ]);
+        //attempt to authenticate and login the user
+        if(auth()->attempt($attributes))
+        {
+            //create a new session
+            session()->regenerate();
+            //redirect to home page
+            return redirect('/dashboard')->with('success', 'Welcome to your dashboard');
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      *

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Admin;
 use App\Models\AdminTable;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,12 +17,13 @@ class AdminTableSeeder extends Seeder
      */
     public function run()
     {
-        $admin = Admin::where('email', 'alumni@auca.com')->first();
+        $admin = User::where('email', 'alumni@auca.com')->first();
         if (!$admin) {
-            Admin::create([
-                'username' => 'Admin',
-                'email' => 'admin@hotel.com',
+            User::create([
+                'name' => 'Admin',
+                'email' => 'admin@aams.com',
                 'password' => Hash::make('password'),
+                'role_id' => "1",
             ]);
         }
     }

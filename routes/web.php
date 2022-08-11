@@ -4,6 +4,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\AlumniRegistrationController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegistrationController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\LandingController;
@@ -24,7 +26,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingController::class,'index']);
 
-Route::get('admin', [AdminController::class, 'index'])->name('admin.dashboard');
+// Login Routes
+Route::get('login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'login']);
+
+//main dashboard
+Route::get('/dashboard', [DashboardController::class, 'index']);
 //Event Routes
 Route::get('admin/event', [EventController::class, 'index'])->name('admin.event');
 Route::get('admin/event/new', [EventController::class, 'create'])->name('admin.event.create');
@@ -41,14 +48,11 @@ Route::delete('admin/gallery/delete-gallery/{id}', [GalleryController::class, 'd
 
 
 
-Route::get('member', [MemberController::class, 'index']);
+Route::get('member', [MemberController::class, 'index'])->name('memberdashboard');
 
-Route::get('alumni', [AlumniController::class, 'index']);
+Route::get('alumni', [AlumniController::class, 'index'])->name('alumnidashboard');
 
-
-// Login Routes
-Route::get('login', [LoginController::class, 'index']);
 
 //User Registration Routes
-Route::get('/alumnisignup', [AlumniRegistrationController::class, 'index']);
-Route::get('/membersignup', [MemberRegistrationController::class, 'index']);
+Route::get('/alumnisignup', [RegistrationController::class, 'alumniindex']);
+Route::get('/membersignup', [RegistrationController::class, 'memberindex']);

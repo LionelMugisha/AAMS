@@ -1,17 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class MemberRegistrationController extends Controller
+class RegistrationController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function alumniindex()
+    {
+        return view('auth.alumniregistration');
+    }
+
+    public function memberindex()
     {
         return view('auth.memberregistration');
     }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AlumniRegistrationController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class AlumniRegistrationController extends Controller
      */
     public function index()
     {
-        return view('auth.alumniregistration');
+        return view('dashboard');
     }
 
     /**

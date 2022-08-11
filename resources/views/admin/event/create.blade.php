@@ -1,6 +1,4 @@
-@extends('admin.layouts.app')
-
-@section('contents')
+<x-maindashboard>
 
 <div id="main" class="main-content flex-1 bg-white mt-12 md:mt-2">
     <div class="flex flex-col mt-12">
@@ -69,4 +67,4 @@
     </div>
 </div>
 
-@endsection
+</x-maindashboard>

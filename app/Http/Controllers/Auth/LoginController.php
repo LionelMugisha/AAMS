@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Brian2694\Toastr\Facades\Toastr;
 
 class LoginController extends Controller
 {
@@ -39,10 +42,24 @@ class LoginController extends Controller
         if(auth()->attempt($attributes))
         {
             //create a new session
-            session()->regenerate();
+            $res = session()->regenerate();
+            
             //redirect to home page
-            return redirect('/dashboard')->with('success', 'Welcome to your dashboard');
+            if($res)
+            {
+                Toastr::success('Login successful', 'Success!');
+                return redirect('/dashboard');
+            }
         }
+    }
+
+    public function logout()
+    {
+        Session::flush();
+        
+        Auth::logout();
+
+        return redirect('/login');
     }
 
     /**

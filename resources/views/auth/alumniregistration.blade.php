@@ -41,8 +41,10 @@
                 </div>
                 <!-- Col -->
                 <div class="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none">
+                    {!! Toastr::message() !!}
                     <h3 class="pt-4 text-2xl text-center">Create an Alumni Account!</h3>
-                    <form class="px-8 pt-6 pb-8 mb-4 bg-white rounded" method="" action="">
+                    <form class="px-8 pt-6 pb-8 mb-4 bg-white rounded" method="POST" action="{{ route('alumni.registration') }}">
+                    @csrf    
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-bold text-gray-700" for="name">
                                 Full Name
@@ -50,8 +52,13 @@
                             <input
                                 class="w-full px-3 py-3 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                 id="name"
+                                name="name"
                                 type="text"
-                            />
+                                value="{{ old('name') }}"
+                                />
+                                @error('name')
+                                    <p class="text-red-500 py-1">{{ $message }}</p>
+                                @enderror
                         </div>
                         <div class="mb-4 md:flex md:justify-between">
                             <div class="mb-4 md:mr-1 md:mb-0">
@@ -61,8 +68,13 @@
                                 <input
                                     class="w-full px-7 py-3 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                     id="email"
+                                    name="email"
                                     type="email"
+                                    value="{{ old('email') }}"
                                 />
+                                @error('email')
+                                    <p class="text-red-500 py-1">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="md:ml-1">
                                 <label class="block mb-2 text-sm font-bold text-gray-700" for="telephone">
@@ -71,8 +83,13 @@
                                 <input
                                     class="w-full px-7 py-3 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                     id="telephone"
+                                    name="telephone"
                                     type="text"
+                                    value="{{ old('telephone') }}"
                                 />
+                                @error('telephone')
+                                    <p class="text-red-500 py-1">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
                         <div class="mb-4 md:flex md:justify-between">
@@ -83,8 +100,13 @@
                                 <input
                                     class="w-full px-7 py-3 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                     id="faculty"
+                                    name="faculty"
                                     type="text"
+                                    value="{{ old('faculty') }}"
                                 />
+                                @error('faculty')
+                                    <p class="text-red-500 py-1">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="md:ml-1">
                                 <label class="block mb-2 text-sm font-bold text-gray-700" for="department">
@@ -93,8 +115,13 @@
                                 <input
                                     class="w-full px-7 py-3 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                     id="department"
+                                    name="department"
                                     type="text"
+                                    value="{{ old('department') }}"
                                 />
+                                @error('department')
+                                    <p class="text-red-500 py-1">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
                         <div class="mb-4 md:flex md:justify-between">
@@ -105,8 +132,13 @@
                                 <input
                                     class="w-full px-7 py-3 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                     id="yearofgraduation"
+                                    name="yearofgraduation"
                                     type="text"
+                                    value="{{ old('yearofgraduation') }}"
                                 />
+                                @error('yearofgraduation')
+                                    <p class="text-red-500 py-1">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="md:ml-1">
                                 <label class="block mb-2 text-sm font-bold text-gray-700" for="address">
@@ -115,42 +147,43 @@
                                 <input
                                     class="w-full px-7 py-3 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                     id="address"
+                                    name="address"
                                     type="text"
+                                    value="{{ old('address') }}"
                                 />
+                                @error('address')
+                                    <p class="text-red-500 py-1">{{ $message }}</p>
+                                @enderror
                             </div>
                         </div>
-                        <div class="mb-4 md:flex md:justify-between">
-                            <div class="mb-4 md:mr-1 md:mb-0">
-                                <label class="block mb-2 text-sm font-bold text-gray-700" for="faculty">
-                                    Employment Status
+                        <div class="mb-4">
+                                <label class="block mb-2 text-sm font-bold text-gray-700" for="employment_status">
+                                    Employment_Status 
                                 </label>
-                                <input
-                                    class="w-full px-7 py-3 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                    id="faculty"
-                                    type="text"
-                                />
-                            </div>
-                            <div class="md:ml-1">
-                                <!-- <span class="text-xs">If the employment status is yes, in which company</span> -->
-                                <label class="block mb-2 text-sm font-bold text-gray-700" for="healthstatus">
-                                    Health Status
-                                </label>
-                                <input
-                                    class="w-full px-7 py-3 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                    id="healthstatus"
-                                    type="text"
-                                />
-                            </div>
+                                <select name="employment_status" value="{{ old('employment_status') }}" class="w-full px-3 py-3 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                                    <option selected>Choose your employment status:</option>
+                                    <option value="employed">Employed</option>
+                                    <option value="unemployed">Unemployed</option>
+                                </select>
+                                @error('employment')
+                                    <p class="text-red-500 py-1">{{ $message }}</p>
+                                @enderror
                         </div>
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-bold text-gray-700" for="employment">
                                 Employment 
                             </label>
                             <input
-                                class="w-full px-3 py-3 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                class="w-full px-3 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                 id="employment"
+                                name="employment"
                                 type="text"
-                            />
+                                value="{{ old('employment') }}"
+                            >
+                            <span class="text-xs mb-3 font-bold">If employed, which company. If not, type no.</span>
+                            @error('employment')
+                                <p class="text-red-500 py-1">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="mb-4 md:flex md:justify-between">
                             <div class="mb-4 md:mr-1 md:mb-0">
@@ -161,17 +194,23 @@
                                     class="w-full px-7 py-3 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                     id="password"
                                     type="password"
+                                    name="password"
                                     placeholder="******************"
+                                    value="{{ old('password') }}"
                                 />
+                                @error('password')
+                                    <p class="text-red-500 py-1">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="md:ml-1">
-                                <label class="block mb-2 text-sm font-bold text-gray-700" for="c_password">
+                                <label class="block mb-2 text-sm font-bold text-gray-700" for="password_confirmation">
                                     Confirm Password
                                 </label>
                                 <input
                                     class="w-full px-7 py-3 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                    id="c_password"
+                                    id="password_confirmation"
                                     type="password"
+                                    name="password_confirmation"
                                     placeholder="******************"
                                 />
                             </div>
@@ -179,7 +218,7 @@
                         <div class="mb-6 text-center">
                             <button
                                 class="w-full px-4 py-2 font-bold text-white bg-indigo-500 rounded-full hover:bg-indigo-700 focus:outline-none focus:shadow-outline"
-                                type="button"
+                                type="submit"
                             >
                                 Create Account
                             </button>

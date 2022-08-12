@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Brian2694\Toastr\Facades\Toastr;
+// use Hash;
 
 class RegistrationController extends Controller
 {
@@ -30,6 +34,78 @@ class RegistrationController extends Controller
     public function create()
     {
         //
+    }
+
+    public function memberstore(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'telephone' => 'required|min:10|unique:users',
+            'employment' => 'required|min:2',
+            'password' => 'required|min:6|confirmed',
+        ]);
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->telephone = $request->telephone;
+        $user->employment = $request->employment;
+        $user->password = Hash::make($request->password);
+        $user->role_id = '2';
+        $res = $user->save();
+        if($res)
+        {
+            Toastr::info('Registration successful, wait for the confirmation!', 'Notice!');
+            return redirect('/membersignup');
+        } else 
+        {
+            Toastr::error('Something went wrong!', 'Warning!');
+            return redirect('/membersignup');
+        }
+    }
+
+    public function alumnistore(Request $request)
+    {
+        $user = new User();
+
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'telephone' => 'required|min:10|unique:users',
+            'faculty' => 'required|min:2',
+            'department' => 'required|min:2',
+            'yearofgraduation' => 'required|min:4',
+            'address' => 'required|min:2',
+            // 'employment_status' => 'required',
+            'employment_status' => 'in:employed,unemployed',
+            'password' => 'required|min:6|confirmed',
+        ]);
+        if($request->employment_status == 'employed'){
+            $request->validate(['employment' => 'required|min:2']);
+        }
+        
+        // dd($request);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->telephone = $request->telephone;
+        $user->faculty = $request->faculty;
+        $user->department = $request->department;
+        $user->yearofgraduation = $request->yearofgraduation;
+        $user->address = $request->address;
+        $user->employment_status = $request->employment_status;
+        $user->employment = $request->employment;
+        $user->password = Hash::make($request->password);
+        $user->role_id = '3';
+        $res = $user->save();
+        if($res)
+        {
+            Toastr::info('Registration successful, wait for the confirmation!', 'Notice!');
+            return redirect('/alumnisignup');
+        } else 
+        {
+            Toastr::error('Something went wrong!', 'Warning!');
+            return redirect('/alumnisignup');
+        }
     }
 
     /**

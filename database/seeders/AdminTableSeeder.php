@@ -20,10 +20,11 @@ class AdminTableSeeder extends Seeder
         $admin = User::where('email', 'alumni@auca.com')->first();
         if (!$admin) {
             User::create([
-                'name' => 'Admin',
+                'name' => 'Administrator',
                 'email' => 'admin@aams.com',
                 'password' => Hash::make('password'),
                 'role_id' => "1",
+                'status' => 'active',
             ]);
         }
     }

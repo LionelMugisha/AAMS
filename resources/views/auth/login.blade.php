@@ -36,7 +36,6 @@
             <h1 class="text-lg font-light text-center text-indigo-700">
                 Login to your dashboard to access your information
             </h1>
-
             <form class="mt-6" method="POST" action="/login">
                 @csrf
                 <div>

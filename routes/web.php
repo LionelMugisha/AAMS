@@ -29,9 +29,16 @@ Route::get('/', [LandingController::class,'index']);
 // Login Routes
 Route::get('login', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+//User Registration 
+Route::post('member-registration', [RegistrationController::class, 'memberstore'])->name('member.registration');
+Route::post('alumni-registration', [RegistrationController::class, 'alumnistore'])->name('alumni.registration');
 
 //main dashboard
 Route::get('/dashboard', [DashboardController::class, 'index']);
+
+
 //Event Routes
 Route::get('admin/event', [EventController::class, 'index'])->name('admin.event');
 Route::get('admin/event/new', [EventController::class, 'create'])->name('admin.event.create');

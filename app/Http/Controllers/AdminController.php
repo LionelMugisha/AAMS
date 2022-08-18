@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -11,9 +13,16 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function alumniIndex()
     {
-        return view('admin.dashboard');
+        $alumni = User::all()->where('role_id', 3);
+        return view('admin.alumni.index', compact('alumni'));
+    }
+
+    public function memberIndex()
+    {
+        $member = User::all()->where('role_id', 2);
+        return view('admin.member.index', compact('member'));
     }
 
     /**

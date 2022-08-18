@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Brian2694\Toastr\Facades\Toastr;
 
 class EventController extends Controller
 {
@@ -49,8 +50,18 @@ class EventController extends Controller
             $file->move('uploads/events/', $filname);
             $event->picture = $filname;
         }
-        $event->save();
-        return redirect()->back()->with('status', 'Event added successfully');
+        
+        $res = $event->save();
+
+        if($res)
+        {
+            Toastr::success('Event registered successfully!', 'Notice!');
+            return redirect('/admin/event');
+        } else 
+        {
+            Toastr::error('Something went wrong!', 'Warning!');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -102,8 +113,19 @@ class EventController extends Controller
             $file->move('uploads/events/', $filname);
             $event->picture = $filname;
         }
-        $event->update();
-        return redirect()->back()->with('status', 'Event updated successfully');
+
+        $res = $event->update();
+
+        if($res)
+        {
+            Toastr::success('Event updated successfully!', 'Success!');
+            return redirect('/admin/event');
+        } else 
+        {
+            Toastr::error('Something went wrong!', 'Warning!');
+            return redirect()->back();
+        }
+
     }
 
     /**
@@ -123,8 +145,17 @@ class EventController extends Controller
             File::delete($destination);
         }
 
-        $event->delete();
-        return redirect()->back()->with('status', 'Event deleted successfully');
+        $res = $event->delete();
+
+        if($res)
+        {
+            Toastr::error('Event deleted successfully!', 'Success!');
+            return redirect('/admin/event');
+        } else 
+        {
+            Toastr::error('Something went wrong!', 'Warning!');
+            return redirect()->back();
+        }
 
     }
 }

@@ -11,6 +11,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MemberRegistrationController;
+use App\Http\Controllers\TryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,7 +37,7 @@ Route::post('member-registration', [RegistrationController::class, 'memberstore'
 Route::post('alumni-registration', [RegistrationController::class, 'alumnistore'])->name('alumni.registration');
 
 //main dashboard
-Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 
 //Event Routes
@@ -51,12 +52,18 @@ Route::get('admin/gallery', [GalleryController::class, 'index'])->name('admin.ga
 Route::get('admin/gallery/new', [GalleryController::class, 'create'])->name('admin.gallery.create');
 Route::post('admin/gallery/new', [GalleryController::class, 'store'])->name('admin.gallery.save');
 Route::delete('admin/gallery/delete-gallery/{id}', [GalleryController::class, 'destroy']);
+//Admin Alumni Routes
+Route::get('admin/alumni', [AdminController::class ,'alumniIndex'])->name('admin.alumni');
+
+//Admin Member Routes
+Route::get('admin/member', [AdminController::class ,'memberIndex'])->name('admin.member');
 
 
-
-
+//Members page routes
 Route::get('member', [MemberController::class, 'index'])->name('memberdashboard');
 
+
+//Alumni page routes
 Route::get('alumni', [AlumniController::class, 'index'])->name('alumnidashboard');
 
 

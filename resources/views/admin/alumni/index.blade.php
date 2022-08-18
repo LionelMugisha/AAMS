@@ -18,14 +18,14 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                        @foreach($alumni as $ppl)
+                        @foreach($alumni as $grad)
                             <tr class="text-gray-700 dark:text-gray-400">
                                 <td class="px-4 py-3">
                                     <div class="flex items-center text-sm">
                                         <div>
-                                            <p class="font-semibold">{{ $ppl->name }}</p>
+                                            <p class="font-semibold">{{ $grad->name }}</p>
                                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                {{ $ppl->email }}
+                                                {{ $grad->email }}
                                             </p>
                                         </div>
                                     </div>
@@ -33,23 +33,23 @@
                                 <td class="px-4 py-3 text-sm">
                                     <div class="flex items-center text-sm">
                                         <div>
-                                            <p class="font-semibold">{{ $ppl->faculty }}</p>
+                                            <p class="font-semibold">{{ $grad->faculty }}</p>
                                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                {{ $ppl->department }}
+                                                {{ $grad->department }}
                                             </p>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="px-4 py-3 text-xs">
                                     <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">
-                                        {{ $ppl->status }}
+                                        {{ $grad->status }}
                                     </span>
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{ $ppl->yearofgraduation }}
+                                    {{ $grad->yearofgraduation }}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{ $ppl->created_at }}
+                                    {{ $grad->created_at }}
                                 </td>
                             </tr>
                         @endforeach

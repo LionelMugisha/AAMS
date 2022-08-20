@@ -1,48 +1,33 @@
-@extends('admin.layouts.app')
+<x-maindashboard>
 
-@section('contents')
-
-<div id="main" class="main-content flex-1 bg-white mt-12 md:mt-2">
-    <div class="flex flex-col mt-12">
-        <div class="w-full p-6">
-            <div class="flex justify-start items-center">
-                <h1 class="font-bold text-5xl tracking-widest ml-20">Create Gallery</h1>
-            </div>
-        </div>
-        <div class="flex justify-start items-center ml-24 mt-1">
+    <div class="container px-6 mx-auto grid">
+        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            New Events
+        </h2>
+        <div class="mb-2 flex justify-end items-center">
             <a href="{{ route('admin.gallery') }}">
-                <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Return Back</button>
-            </a>    
+                <span class="text-white">Return</span>
+            </a>
         </div>
-        <div class="bg-gray-100 mx-auto max-w-6xl bg-white py-2 px-12 lg:px-24 shadow-8xl mb-24">
-            <form action="{{ route('admin.gallery.save') }}" method="POST" enctype="multipart/form-data">
-                @if(session('status'))
-                    <h1 class="text-green-800">{{ session('status') }}</h1>
-                @endif
+        <!-- New Form -->
 
-                @csrf
-                <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex">
-                  <div class="-mx-3 md:flex mb-6">
-                    <div class="-mx-3 md:flex mb-6">
-                        <div class="md:w-full px-3">
-                            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="title">
-                                Upload the picture
-                            </label>
-                            <input class="w-full bg-gray-200 text-black border border-gray-200 rounded py-1 px-3 mb-3" 
-                            name="picture" type="file">
-                        </div>
-                    </div>    
-                    <div class="-mx-3 md:flex mt-5 ml-3">
-                        <div class="md:w-full px-3">
-                            <button type="submit" class="md:w-full bg-gray-900 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-gray-500 hover:border-gray-100 rounded-full">
-                                Save Gallery
-                            </button>
-                        </div>
-                    </div>
-                </div>
+        {!! Toastr::message() !!}
+
+        <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+            <form action="{{ route('admin.gallery.save') }}" method="POST" enctype="multipart/form-data">
+            @csrf                
+                <label class="block text-sm mb-6">
+                    <span class="text-gray-700 dark:text-gray-400">Upload the picture</span>
+                    <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" 
+                    type="file" name="picture" value="" />
+                </label>
+                <button
+                    type="submit"
+                    class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                    Create
+                </button>
             </form>
         </div>
     </div>
-</div>
 
-@endsection
+</x-maindashboard>

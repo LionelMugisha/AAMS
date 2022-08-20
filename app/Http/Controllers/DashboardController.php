@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Opportunity;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -13,7 +15,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $activeusers = User::all()->where('status', 'active')->where('role_id', '!=',1)->count();
+        $pendingusers = User::all()->where('status', 'inactive')->count();
+        $totalopportunities = Opportunity::all()->count();
+        return view('auth.dashboard', [
+            'active_users'=>$activeusers,'pending_users'=>$pendingusers, 'total_posts'=>$totalopportunities
+        ]);
     }
 
     /**

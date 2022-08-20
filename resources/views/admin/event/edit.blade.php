@@ -1,73 +1,52 @@
 <x-maindashboard>
 
-<div id="main" class="main-content flex-1 bg-white mt-12 md:mt-2">
-    <div class="flex flex-col mt-12">
-        <div class="w-full p-6">
-            <div class="flex justify-start items-center">
-                <h1 class="font-bold text-5xl tracking-widest ml-20">Edit Event</h1>
-            </div>
+    <div class="container px-6 mx-auto grid">
+        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            Edit Event
+        </h2>
+        <div class="mb-2 flex justify-end items-center">
+            <a href="{{ route('admin.event') }}">
+                <span class="text-white">Return</span>
+            </a>
         </div>
-        <div class="flex justify-start items-center ml-24 mt-1">
-            <a href="/admin/event">
-                <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Return Back</button>
-            </a>    
-        </div>
-        <div class="bg-gray-100 mx-auto max-w-6xl bg-white py-2 px-12 lg:px-24 shadow-8xl mb-24">
+
+        {!! Toastr::message() !!}
+
+        <!-- New Form -->
+
+        <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
             <form action="{{ url('admin/event/update-event/'.$event->id) }}" method="POST" enctype="multipart/form-data">
-                @if(session('status'))
-                    <h1 class="text-green-800">{{ session('status') }}</h1>
-                @endif
+            @csrf
+            @method('PUT')
 
-                @csrf
-                @method('PUT')
-
-                <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
-                    <div class="-mx-3 md:flex mb-6">
-                        <div class="md:w-full px-3">
-                            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="application-link">
-                                Detail
-                            </label>
-                            <input class="w-full bg-gray-200 text-black border border-gray-200 rounded py-2 px-4 mb-3" 
-                            name="details" value="{{$event->details}}" type="text">
-                        </div>
-                    </div>    
-                    <div class="-mx-3 md:flex mb-6">
-                        <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="company">
-                                Date of Event
-                            </label>
-                            <input class="w-full bg-gray-200 text-black border border-gray-200 rounded py-2 px-4 mb-3" 
-                            name="dateHappening" value="{{$event->dateHappening}}" type="date">
-                        </div>
-                        <div class="md:w-1/2 px-3">
-                            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="title">
-                                Time of Event
-                            </label>
-                            <input class="w-full bg-gray-200 text-black border border-gray-200 rounded py-2 px-4 mb-3" 
-                            name="timeHappening" value="{{$event->timeHappening}}" type="time">
-                        </div>
-                    </div>
-                    <div class="-mx-3 md:flex mb-6">
-                        <div class="md:w-full px-3">
-                            <label class="uppercase tracking-wide text-black text-xs font-bold mb-2" for="title">
-                                Upload the picture
-                            </label>
-                            <input class="w-full bg-gray-200 text-black border border-gray-200 rounded py-1 px-3 mb-3" 
-                            name="picture" type="file">
-                            <img src="{{ asset('uploads/events/'.$event->picture) }}" class="w-12 h-12" alt="image" />
-                        </div>
-                    </div>    
-                    <div class="-mx-3 md:flex mt-2">
-                        <div class="md:w-full px-3">
-                            <button type="submit" class="md:w-full bg-gray-900 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-gray-500 hover:border-gray-100 rounded-full">
-                                Update Event
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <label class="block text-sm mb-6">
+                    <span class="text-gray-700 dark:text-gray-400">Detail</span>
+                    <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" 
+                    type="text" name="details" value="{{$event->details}}" />
+                </label>
+                <label class="block text-sm mb-6">
+                    <span class="text-gray-700 dark:text-gray-400">Date of Event</span>
+                    <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" 
+                    type="date" name="dateHappening" value="{{$event->dateHappening}}" />
+                </label>
+                <label class="block text-sm mb-6">
+                    <span class="text-gray-700 dark:text-gray-400">Time of Event</span>
+                    <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" 
+                    type="time" name="timeHappening" value="{{$event->timeHappening}}" />
+                </label>
+                <label class="block text-sm mb-6">
+                    <span class="text-gray-700 dark:text-gray-400">Upload the picture</span>
+                    <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" 
+                    type="file" name="picture" />
+                    <img src="{{ asset('uploads/events/'.$event->picture) }}" class="w-12 h-12" alt="image" />
+                </label>
+                <button
+                    type="submit"
+                    class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                    Edit
+                </button>
             </form>
         </div>
     </div>
-</div>
 
 </x-maindashboard>

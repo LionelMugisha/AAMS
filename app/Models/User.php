@@ -47,4 +47,14 @@ class User extends Authenticatable
         return $this->belongsTo(Roles::class);
     } 
 
+    public function opportunities()
+    {
+        return $this->hasMany(Opportunity::class);
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
 }

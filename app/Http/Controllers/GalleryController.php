@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Brian2694\Toastr\Facades\Toastr;
+
 
 class GalleryController extends Controller
 {
@@ -46,8 +48,19 @@ class GalleryController extends Controller
             $file->move('uploads/gallery/', $filname);
             $gallery->picture = $filname;
         }
-        $gallery->save();
-        return redirect()->back()->with('status', 'Gallery added successfully');
+
+        $res = $gallery->save();
+
+        if($res)
+        {
+            Toastr::success('Gallery added successfully!', 'Success!');
+            return redirect('/admin/gallery');
+        } else 
+        {
+            Toastr::error('Something went wrong!', 'Warning!');
+            return redirect()->back();
+        }
+
     }
 
     /**
@@ -101,7 +114,16 @@ class GalleryController extends Controller
             File::delete($destination);
         }
 
-        $gallery->delete();
-        return redirect()->back()->with('status', 'Gallery deleted successfully');
+        $res = $gallery->delete();
+
+        if($res)
+        {
+            Toastr::error('Gallery deleted successfully!', 'Success!');
+            return redirect('/admin/gallery');
+        } else 
+        {
+            Toastr::error('Something went wrong!', 'Warning!');
+            return redirect()->back();
+        }
     }
 }

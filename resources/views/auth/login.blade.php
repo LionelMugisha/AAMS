@@ -36,6 +36,9 @@
             <h1 class="text-lg font-light text-center text-indigo-700">
                 Login to your dashboard to access your information
             </h1>
+            
+            {!! Toastr::message() !!}
+
             <form class="mt-6" method="POST" action="/login">
                 @csrf
                 <div>

@@ -19,7 +19,7 @@
                         Total Active Users
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        6389
+                        {{$active_users}}
                     </p>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                         Total Pending Users
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        $ 46,760.89
+                        {{$pending_users}}
                     </p>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                         Total Job Opportunities
                     </p>
                     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                        376
+                        {{$total_posts}}
                     </p>
                 </div>
             </div>

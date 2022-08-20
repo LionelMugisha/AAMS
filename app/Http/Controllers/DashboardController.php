@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Opportunity;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,22 +15,13 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('auth.dashboard');
-    }
-
-    public function activeUsers()
-    {
-        $activeusers = User::all()->where('status', 'active')->count();
-        return view('auth.dashboard', compact('activeusers'));
-    }
-    // [ 'tools_1' => Tools1::count(), 'users' => User::count() ]
-    public function pendingUsers()
-    {
+        $activeusers = User::all()->where('status', 'active')->where('role_id', '!=',1)->count();
         $pendingusers = User::all()->where('status', 'inactive')->count();
-
-        return view('auth.dashboard',);
+        $totalopportunities = Opportunity::all()->count();
+        return view('auth.dashboard', [
+            'active_users'=>$activeusers,'pending_users'=>$pendingusers, 'total_posts'=>$totalopportunities
+        ]);
     }
-
 
     /**
      * Show the form for creating a new resource.

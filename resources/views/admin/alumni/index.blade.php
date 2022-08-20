@@ -41,9 +41,13 @@
                                     </div>
                                 </td>
                                 <td class="px-4 py-3 text-xs">
-                                    <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">
-                                        {{ $grad->status }}
-                                    </span>
+                                    <form action="{{ url('admin/updatealumni_status/'.$grad->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="{{$grad->status == 'active'? 'px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100':'px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100'}}">
+                                            {{ $grad->status }}
+                                        </button>
+                                    </form>
                                 </td>
                                 <td class="px-4 py-3 text-sm">
                                     {{ $grad->yearofgraduation }}

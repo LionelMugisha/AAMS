@@ -30,6 +30,15 @@ class LoginController extends Controller
         //
     }
 
+    public function logout()
+    {
+        Session::flush();
+        
+        Auth::logout();
+
+        return redirect('/login');
+    }
+
     public function login()
     {
         // dd('done');
@@ -44,22 +53,21 @@ class LoginController extends Controller
             //create a new session
             $res = session()->regenerate();
             
+            // dd(auth()->user()->status);
+
             //redirect to home page
-            if($res)
+            if($res && auth()->user()->status == 'active')
             {
                 Toastr::success('Login successful', 'Success!');
                 return redirect('/dashboard');
+            } else 
+            {
+                Toastr::error('Login unsuccessfully, wait to be confirmed', 'Unsuccess!');    
+                Auth::logout();
+                return redirect('/login');
+
             }
         }
-    }
-
-    public function logout()
-    {
-        Session::flush();
-        
-        Auth::logout();
-
-        return redirect('/login');
     }
 
     /**

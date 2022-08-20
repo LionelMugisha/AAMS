@@ -55,7 +55,7 @@ class EventController extends Controller
 
         if($res)
         {
-            Toastr::success('Event registered successfully!', 'Notice!');
+            Toastr::success('Event registered successfully!', 'Success!');
             return redirect('/admin/event');
         } else 
         {

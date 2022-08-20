@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Brian2694\Toastr\Facades\Toastr;
+
 
 class AdminController extends Controller
 {
@@ -23,6 +24,58 @@ class AdminController extends Controller
     {
         $member = User::all()->where('role_id', 2);
         return view('admin.member.index', compact('member'));
+    }
+
+    public function mchangestatus($id)
+    {
+        $change = User::find($id);
+
+        if($change->status == 'active')
+        {
+            $change->status = 'inactive';
+        }
+        else
+        {
+            $change->status = 'active';
+        }
+
+        $res = $change->update();
+
+        if($res)
+        {
+            Toastr::success('Status changed!', 'Success!');
+            return redirect('/admin/member');
+        } else 
+        {
+            Toastr::error('Something went wrong!', 'Warning!');
+            return redirect()->back();
+        }
+    }
+
+    public function achangestatus($id)
+    {
+        $change = User::find($id);
+
+        if($change->status == 'active')
+        {
+            $change->status = 'inactive';
+        }
+        else
+        {
+            $change->status = 'active';
+        }
+
+        $res = $change->update();
+
+        if($res)
+        {
+            Toastr::success('Status changed!', 'Success!');
+            return redirect('/admin/alumni');
+        } else 
+        {
+            Toastr::error('Something went wrong!', 'Warning!');
+            return redirect()->back();
+        }
     }
 
     /**

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
-
+use App\Mail\DecisionMail;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -39,11 +40,14 @@ class AdminController extends Controller
             $change->status = 'active';
         }
 
+        // dd($change->email);
+
         $res = $change->update();
 
         if($res)
         {
             Toastr::success('Status changed!', 'Success!');
+            Mail::to($change['email'])->send(new DecisionMail($change));
             return redirect('/admin/member');
         } else 
         {
@@ -63,6 +67,7 @@ class AdminController extends Controller
         else
         {
             $change->status = 'active';
+            Mail::to($change['email'])->send(new DecisionMail($change));
         }
 
         $res = $change->update();

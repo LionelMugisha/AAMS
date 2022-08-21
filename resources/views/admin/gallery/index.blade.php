@@ -22,7 +22,7 @@
                         <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                             <th class="px-4 py-3">Gallery</th>
                             <th class="px-4 py-3">Created At</th>
-                            <th colspan="2" class="px-4 py-3"></th>
+                            <th class="px-4 py-3"></th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -44,7 +44,7 @@
                                     <form action="{{ url('admin/gallery/delete-gallery/'.$item->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="text-white font-bold py-2 px-4 rounded">
+                                        <button type="submit" class="font-bold py-2 px-4 rounded">
                                             Delete
                                         </button>
                                     </form>
@@ -56,11 +56,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        $(document).ready(function() {
-            $('#myTable').DataTable();
-        });
-    </script>
 
 </x-maindashboard>

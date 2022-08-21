@@ -25,7 +25,7 @@
                             <th class="px-4 py-3">Day Date</th>
                             <th class="px-4 py-3">Day Time</th>
                             <th class="px-4 py-3">Created At</th>
-                            <th colspan="2" class="px-4 py-3"></th>
+                            <th class="px-4 py-3"></th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -53,13 +53,13 @@
                                     {{ $item->created_at }}
                                 </td>
                                 <td class="px-4 py-3 text-sm flex">
-                                    <button type="submit" class="text-white font-bold py-2 px-4 rounded">
+                                    <button type="submit" class="font-bold py-2 px-4 rounded">
                                         <a href="{{ url('admin/event/edit-event/'.$item->id) }}">Edit</a>
                                     </button>
                                     <form action="{{ url('admin/event/delete-event/'.$item->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="text-white font-bold py-2 px-4 rounded">
+                                        <button type="submit" class="font-bold py-2 px-4 rounded">
                                             Delete
                                         </button>
                                     </form>
@@ -71,11 +71,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        $(document).ready(function() {
-            $('#myTable').DataTable();
-        });
-    </script>
 
 </x-maindashboard>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'AAMS')
 @section('content')
-    <div class="h-full w-full bg-gradient-to-r from-indigo-500 to-indigo-500">      
+    <div class="h-full w-full bg-gradient-to-r from-indigo-500 to-indigo-500 mb-8">      
         <nav class="border-gray-200 px-2">
             <div class="container flex justify-evenly justify-between items-center mx-auto">
                 <a href="/" class="flex items-center mr-20">
@@ -29,9 +29,8 @@
             </div>
         </nav>
     </div>
-    <div class="container relative flex flex-col justify-center min-h-screen overflow-hidden -mt-16">
-        <div
-            class="w-full p-6 m-auto bg-white border-t border-indigo-600 rounded shadow-lg shadow-indigo-800/50 lg:max-w-2xl">
+    <div class="container flex-1 justify-evenly min-h-screen overflow-hidden">
+        <div class="w-full flex flex-col p-6 m-auto bg-white border-t border-indigo-600 rounded shadow-lg shadow-indigo-800/50 lg:max-w-2xl">
             <h1 class="text-3xl font-semibold text-center text-indigo-700">Login</h1>
             <h1 class="text-lg font-light text-center text-indigo-700">
                 Login to your dashboard to access your information

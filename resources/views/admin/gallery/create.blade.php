@@ -6,7 +6,7 @@
         </h2>
         <div class="mb-2 flex justify-end items-center">
             <a href="{{ route('admin.gallery') }}">
-                <span class="text-white">Return</span>
+                <span class="">Return</span>
             </a>
         </div>
         <!-- New Form -->

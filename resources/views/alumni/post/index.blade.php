@@ -25,7 +25,7 @@
                             <th class="px-4 py-3">Picture</th>
                             <th class="px-4 py-3">Posted By</th>
                             <th class="px-4 py-3">Created At</th>
-                            <th colspan="2" class="px-4 py-3"></th>
+                            <th class="px-4 py-3"></th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -56,7 +56,7 @@
                                     <form action="#" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="text-white font-bold py-2 px-4 rounded">
+                                        <button type="submit" class="font-bold py-2 px-4 rounded">
                                             Delete
                                         </button>
                                     </form>
@@ -68,11 +68,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        $(document).ready(function() {
-            $('#myTable').DataTable();
-        });
-    </script>
 
 </x-maindashboard>

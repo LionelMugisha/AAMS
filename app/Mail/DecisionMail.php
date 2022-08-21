@@ -12,7 +12,6 @@ class DecisionMail extends Mailable
     use Queueable, SerializesModels;
 
     public $change;
-    public $changes;
     /**
      * Create a new message instance.
      *
@@ -21,11 +20,6 @@ class DecisionMail extends Mailable
     public function __construct($change)
     {
         $this->change=$change;
-    }
-
-    public function deny($changes)
-    {
-        $this->changes=$changes;
     }
 
     /**

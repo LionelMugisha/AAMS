@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Mail\DecisionMail;
+use App\Mail\DecisionsMail;
 use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
@@ -33,7 +34,7 @@ class AdminController extends Controller
 
         if($change->status == 'active')
         {
-            $change->status = 'inactive';
+            $change->status = 'inactive';       
         }
         else
         {
@@ -47,7 +48,12 @@ class AdminController extends Controller
         if($res)
         {
             Toastr::success('Status changed!', 'Success!');
-            Mail::to($change['email'])->send(new DecisionMail($change));
+            if($change->status == 'active') {
+                Mail::to($change['email'])->send(new DecisionMail($change));
+            } else
+            {
+                Mail::to($change['email'])->send(new DecisionsMail($change));
+            }
             return redirect('/admin/member');
         } else 
         {
@@ -67,7 +73,6 @@ class AdminController extends Controller
         else
         {
             $change->status = 'active';
-            Mail::to($change['email'])->send(new DecisionMail($change));
         }
 
         $res = $change->update();
@@ -75,6 +80,12 @@ class AdminController extends Controller
         if($res)
         {
             Toastr::success('Status changed!', 'Success!');
+            if($change->status == 'active') {
+                Mail::to($change['email'])->send(new DecisionMail($change));
+            } else
+            {
+                Mail::to($change['email'])->send(new DecisionsMail($change));
+            }
             return redirect('/admin/alumni');
         } else 
         {

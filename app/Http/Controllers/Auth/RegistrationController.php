@@ -76,6 +76,7 @@ class RegistrationController extends Controller
             'department' => 'required|min:2',
             'yearofgraduation' => 'required|min:4',
             'address' => 'required|min:2',
+            'school_id' => 'required|min:5',
             // 'employment_status' => 'required',
             'employment_status' => 'in:employed,unemployed',
             'password' => 'required|min:6|confirmed',
@@ -91,6 +92,7 @@ class RegistrationController extends Controller
         $user->faculty = $request->faculty;
         $user->department = $request->department;
         $user->yearofgraduation = $request->yearofgraduation;
+        $user->school_id = $request->school_id;
         $user->address = $request->address;
         $user->employment_status = $request->employment_status;
         $user->employment = $request->employment;

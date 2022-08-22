@@ -52,9 +52,9 @@ class User extends Authenticatable
         return $this->hasMany(Opportunity::class);
     }
 
-    public function messages()
+    public function payments()
     {
-        return $this->hasMany(Message::class);
+        return $this->hasMany(Payment::class);
     }
 
 }

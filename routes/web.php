@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlumniController;
-use App\Http\Controllers\AlumniRegistrationController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\DashboardController;
@@ -10,9 +9,9 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\MemberController;
-use App\Http\Controllers\MemberRegistrationController;
 use App\Http\Controllers\OpportunityController;
-use App\Http\Controllers\TryController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -71,15 +70,27 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function() {
     Route::get('admin/member', [AdminController::class ,'memberIndex'])->name('admin.member');
     Route::put('admin/updatemember_status/{id}', [AdminController::class, 'mchangestatus']);
 
+    //Admin Payment Routes
+    Route::get('admin/view-payment', [PaymentController::class, 'view'])->name('admin.payment.view');
+
 });
 
 
 //Member Routes
 Route::group(['middleware' => ['auth', 'isMember']], function() {
     Route::get('member', [MemberController::class, 'index'])->name('memberdashboard');
+    //Member Opportunity Routes
     Route::get('/member/job_opportunities', [OpportunityController::class, 'mindex'])->name('member.opportunities');
     Route::get('/member/job_opportunities/new', [OpportunityController::class, 'mcreatepost'])->name('member.opportunities.create');
     Route::post('/member/job_opportunities/save', [OpportunityController::class, 'msavepost'])->name('member.opportunities.save');
+    //Member Payment Routes
+    Route::get('/member/place-payment', [PaymentController::class, 'index'])->name('member.payment');
+    Route::get('/member/place-payment/new', [PaymentController::class, 'create'])->name('member.payment.create');
+    Route::get('/member/place-payment/save', [PaymentController::class, 'store'])->name('member.payment.save');
+    //Member Profile Routes
+    Route::get('/member/profile', [ProfileController::class, 'medit'])->name('member.profile');
+    Route::put('/member/profile/update-profile/{id}', [EventController::class, 'update']);
+
 });
 
 
@@ -90,4 +101,6 @@ Route::group(['middleware' => ['auth', 'isAlumni']], function() {
     Route::get('/alumni/job_opportunities', [OpportunityController::class, 'aluindex'])->name('alumni.opportunities');
     Route::get('/alumni/job_opportunities/new', [OpportunityController::class, 'alucreatepost'])->name('alumni.opportunities.create');
     Route::post('/alumni/job_opportunities/save', [OpportunityController::class, 'alusavepost'])->name('alumni.opportunities.save');
+    //Alumni Profile Routes
+    Route::get('/alumni/profile', [ProfileController::class, 'aledit'])->name('alumni.profile');
 });

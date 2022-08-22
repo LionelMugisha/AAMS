@@ -140,50 +140,67 @@
                                     <p class="text-red-500 py-1">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="md:ml-1">
-                                <label class="block mb-2 text-sm font-bold text-gray-700" for="address">
-                                    Address
+                            <div class="mb-4 md:mr-1 md:mb-0">
+                                <label class="block mb-2 text-sm font-bold text-gray-700" for="SchoolId">
+                                    School ID
                                 </label>
                                 <input
                                     class="w-full px-7 py-3 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                    id="address"
-                                    name="address"
+                                    id="school_id"
+                                    name="school_id"
                                     type="text"
-                                    value="{{ old('address') }}"
+                                    value="{{ old('school_id') }}"
                                 />
-                                @error('address')
+                                @error('school_id')
                                     <p class="text-red-500 py-1">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
                         <div class="mb-4">
-                                <label class="block mb-2 text-sm font-bold text-gray-700" for="employment_status">
-                                    Employment_Status 
-                                </label>
-                                <select name="employment_status" value="{{ old('employment_status') }}" class="w-full px-3 py-3 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
-                                    <option selected>Choose your employment status:</option>
-                                    <option value="employed">Employed</option>
-                                    <option value="unemployed">Unemployed</option>
-                                </select>
-                                @error('employment')
-                                    <p class="text-red-500 py-1">{{ $message }}</p>
-                                @enderror
-                        </div>
-                        <div class="mb-4">
-                            <label class="block mb-2 text-sm font-bold text-gray-700" for="employment">
-                                Employment 
+                            <label class="block mb-2 text-sm font-bold text-gray-700" for="address">
+                                Address 
                             </label>
                             <input
                                 class="w-full px-3 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                id="employment"
-                                name="employment"
+                                id="address"
+                                name="address"
                                 type="text"
-                                value="{{ old('employment') }}"
+                                value="{{ old('address') }}"
                             >
-                            <span class="text-xs mb-3 font-bold">If employed, which company. If not, type no.</span>
-                            @error('employment')
+                            @error('address')
                                 <p class="text-red-500 py-1">{{ $message }}</p>
                             @enderror
+                        </div>
+                        <div class="mb-4 md:flex md:justify-between">
+                            <div class="mb-4 md:mr-1 md:mb-0">
+                                    <label class="block mb-2 text-sm font-bold text-gray-700" for="employment_status">
+                                        Employment_Status 
+                                    </label>
+                                    <select name="employment_status" value="{{ old('employment_status') }}" class="w-full px-3 py-3 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                                        <option selected>Choose your employment status:</option>
+                                        <option value="employed">Employed</option>
+                                        <option value="unemployed">Unemployed</option>
+                                    </select>
+                                    @error('employment')
+                                        <p class="text-red-500 py-1">{{ $message }}</p>
+                                    @enderror
+                            </div>
+                            <div class="mb-4 md:mr-1 md:mb-0">
+                                <label class="block mb-2 text-sm font-bold text-gray-700" for="employment">
+                                    Company Name 
+                                </label>
+                                <input
+                                    class="w-full px-3 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                    id="employment"
+                                    name="employment"
+                                    type="text"
+                                    value="{{ old('employment') }}"
+                                >
+                                <span class="text-xs mb-3 font-bold">If employed, which company. If not, type no.</span>
+                                @error('employment')
+                                    <p class="text-red-500 py-1">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
                         <div class="mb-4 md:flex md:justify-between">
                             <div class="mb-4 md:mr-1 md:mb-0">

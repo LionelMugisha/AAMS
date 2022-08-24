@@ -39,6 +39,12 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $event = new Event;
+        $request->validate([
+            'details' => 'required|max:255',
+            'timeHappening' => 'required',
+            'dateHappening' => 'required',
+            'picture' => 'required',
+        ]);
         $event->details = $request->input('details');
         $event->timeHappening = $request->input('timeHappening');
         $event->dateHappening = $request->input('dateHappening');
@@ -97,6 +103,14 @@ class EventController extends Controller
     public function update(Request $request, $id)
     {
         $event = Event::find($id);
+
+        $request->validate([
+            'details' => 'required|max:255',
+            'timeHappening' => 'required',
+            'dateHappening' => 'required',
+            'picture' => 'required',
+        ]);
+
         $event->details = $request->input('details');
         $event->timeHappening = $request->input('timeHappening');
         $event->dateHappening = $request->input('dateHappening');

@@ -23,16 +23,25 @@
                     <span class="text-gray-700 dark:text-gray-400">Detail</span>
                     <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" 
                     type="text" name="details" value="{{$event->details}}" />
+                    @error('details')
+                        <p class="text-red-600 dark:text-red-400 py-1">{{ $message }}</p>
+                    @enderror
                 </label>
                 <label class="block text-sm mb-6">
                     <span class="text-gray-700 dark:text-gray-400">Date of Event</span>
                     <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" 
                     type="date" name="dateHappening" value="{{$event->dateHappening}}" />
+                    @error('dateHappening')
+                        <p class="text-red-600 dark:text-red-400 py-1">{{ $message }}</p>
+                    @enderror
                 </label>
                 <label class="block text-sm mb-6">
                     <span class="text-gray-700 dark:text-gray-400">Time of Event</span>
                     <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" 
                     type="time" name="timeHappening" value="{{$event->timeHappening}}" />
+                    @error('timeHappening')
+                        <p class="text-red-600 dark:text-red-400 py-1">{{ $message }}</p>
+                    @enderror
                 </label>
                 <label class="block text-sm mb-6">
                     <span class="text-gray-700 dark:text-gray-400">Upload the picture</span>
@@ -40,6 +49,9 @@
                     type="file" name="picture" />
                     <img src="{{ asset('uploads/events/'.$event->picture) }}" class="w-12 h-12" alt="image" />
                 </label>
+                @error('picture')
+                        <p class="text-red-600 dark:text-red-400 py-1">{{ $message }}</p>
+                    @enderror
                 <button
                     type="submit"
                     class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">

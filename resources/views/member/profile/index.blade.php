@@ -10,29 +10,29 @@
         <!-- New Form -->
 
         <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-            <form action="#" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('member.update-profile') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
                 <label class="block text-sm mb-6">
                     <span class="text-gray-700 dark:text-gray-400">Name</span>
                     <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" 
-                    type="text" name="name"  />
+                    type="text" name="name" value="{{ $user->name }}"  />
                 </label>
                 <label class="block text-sm mb-6">
                     <span class="text-gray-700 dark:text-gray-400">Email</span>
                     <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" 
-                    type="email" name="email"  />
+                    type="email" name="email" value="{{ $user->email }}" />
                 </label>
                 <label class="block text-sm mb-6">
                     <span class="text-gray-700 dark:text-gray-400">Telephone</span>
                     <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" 
-                    type="text" name="telephone"  />
+                    type="text" name="telephone" value="{{ $user->telephone }}" />
                 </label>
                 <label class="block text-sm mb-6">
                     <span class="text-gray-700 dark:text-gray-400">Company Name</span>
                     <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" 
-                    type="text" name="employment"   />
+                    type="text" name="employment" value="{{ $user->employment }}"  />
                 </label>
                 <button
                     type="submit"

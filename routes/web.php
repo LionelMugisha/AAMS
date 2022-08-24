@@ -89,7 +89,7 @@ Route::group(['middleware' => ['auth', 'isMember']], function() {
     Route::get('/member/place-payment/save', [PaymentController::class, 'store'])->name('member.payment.save');
     //Member Profile Routes
     Route::get('/member/profile', [ProfileController::class, 'medit'])->name('member.profile');
-    Route::put('/member/profile/update-profile/{id}', [EventController::class, 'update']);
+    Route::put('/member/profile/update-profile', [ProfileController::class, 'mupdate'])->name('member.update-profile');
 
 });
 
@@ -103,4 +103,5 @@ Route::group(['middleware' => ['auth', 'isAlumni']], function() {
     Route::post('/alumni/job_opportunities/save', [OpportunityController::class, 'alusavepost'])->name('alumni.opportunities.save');
     //Alumni Profile Routes
     Route::get('/alumni/profile', [ProfileController::class, 'aledit'])->name('alumni.profile');
+    Route::put('/alumni/profile/update-profile', [ProfileController::class, 'alupdate'])->name('alumni.update-profile');
 });

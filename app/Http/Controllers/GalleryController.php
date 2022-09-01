@@ -40,6 +40,11 @@ class GalleryController extends Controller
     public function store(Request $request)
     {
         $gallery = new Gallery;
+
+        $request->validate([
+            'picture' => 'required',
+        ]);
+
         if($request->hasFile('picture'))
         {
             $file = $request->file('picture');

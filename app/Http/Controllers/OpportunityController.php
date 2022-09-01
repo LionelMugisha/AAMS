@@ -68,6 +68,13 @@ class OpportunityController extends Controller
     public function alusavepost(Request $request)
     {
         $post = new Opportunity;
+
+        $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'required|max:255',
+            'picture' => 'required',
+        ]);
+
         $post->name = $request->input('name');
         $post->description = $request->input('description');
         $post->user_id = auth()->user()->id;
@@ -108,6 +115,13 @@ class OpportunityController extends Controller
     public function msavepost(Request $request)
     {
         $post = new Opportunity;
+
+        $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'required|max:255',
+            'picture' => 'required',
+        ]);
+
         $post->name = $request->input('name');
         $post->description = $request->input('description');
         $post->user_id = auth()->user()->id;

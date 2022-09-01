@@ -1,73 +1,65 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Brian2694\Toastr\Facades\Toastr;
-// use Hash;
 
-class RegistrationController extends Controller
+
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function alumniindex()
+
+    public function medit()
     {
-        return view('auth.alumniregistration');
+        // $users = User::find($id)->where($id, '==' ,auth()->user()->id);
+        return view('member.profile.index')->with('user', auth()->user());
     }
 
-    public function memberindex()
+    public function aledit()
     {
-        return view('auth.memberregistration');
+        // $users = User::find($id)->where($id, '==' ,auth()->user()->id);
+        return view('alumni.profile.index')->with('user', auth()->user());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function mupdate(Request $request)
     {
-        //
-    }
-
-    public function memberstore(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|max:255',
+        $user = auth()->user();
+        
+        $this->validate($request, [
+            'name' => 'required|min:3',
             'email' => 'required|email|max:255|unique:users',
-            'telephone' => 'required|min:10|unique:users',
-            'employment' => 'required|min:2',
-            'password' => 'required|min:6|confirmed',
+            'telephone' => 'required|min:10',
+            'employment' => 'required|min:3',
         ]);
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->telephone = $request->telephone;
-        $user->employment = $request->employment;
-        $user->password = Hash::make($request->password);
-        $user->role_id = '2';
-        $res = $user->save();
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->telephone = $request->input('telephone');
+        $user->employment = $request->input('employment');
+        
+        $res = $user->update();
+
         if($res)
         {
-            Toastr::info('Registration successful, wait for the confirmation!', 'Notice!');
-            return redirect('/membersignup');
+            Toastr::success('Profile updated successfully!', 'Success!');
+            return redirect('/member/profile');
         } else 
         {
             Toastr::error('Something went wrong!', 'Warning!');
-            return redirect('/membersignup');
+            return redirect()->back();
         }
     }
 
-    public function alumnistore(Request $request)
+    public function alupdate(Request $request)
     {
-        $user = new User();
-
+        $user = auth()->user();
+        
         $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
@@ -79,35 +71,44 @@ class RegistrationController extends Controller
             'school_id' => 'required|min:5',
             // 'employment_status' => 'required',
             'employment_status' => 'in:employed,unemployed',
-            'password' => 'required|min:6|confirmed',
         ]);
         if($request->employment_status == 'employed'){
             $request->validate(['employment' => 'required|min:2']);
         }
         
         // dd($request);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->telephone = $request->telephone;
-        $user->faculty = $request->faculty;
-        $user->department = $request->department;
-        $user->yearofgraduation = $request->yearofgraduation;
-        $user->school_id = $request->school_id;
-        $user->address = $request->address;
-        $user->employment_status = $request->employment_status;
-        $user->employment = $request->employment;
-        $user->password = Hash::make($request->password);
-        $user->role_id = '3';
-        $res = $user->save();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->telephone = $request->input('telephone');
+        $user->faculty = $request->input('faculty');
+        $user->department = $request->input('department');
+        $user->yearofgraduation = $request->input('yearofgraduation');
+        $user->school_id = $request->input('school_id');
+        $user->address = $request->input('address');
+        $user->employment_status = $request->input('employment_status');
+        $user->employment = $request->input('employment');
+        
+        $res = $user->update();
+
         if($res)
         {
-            Toastr::info('Registration successful, wait for the confirmation!', 'Notice!');
-            return redirect('/alumnisignup');
+            Toastr::success('Profile updated successfully!', 'Success!');
+            return redirect('/alumni/profile');
         } else 
         {
             Toastr::error('Something went wrong!', 'Warning!');
-            return redirect('/alumnisignup');
+            return redirect()->back();
         }
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**

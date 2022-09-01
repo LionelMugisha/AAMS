@@ -38,27 +38,27 @@
             <div class="border border-2 w-48 ml-48 border-blue-300 mt-4"></div>
         </div>
     </div>
-    <div class="h-96 w-full" style="background-color:darkgrey;" id="upcomingevents">
+    <div class="h-96 w-full" style="background-color:white;" id="upcomingevents">
         <div class="flex flex-col justify-center items-center">
-            <p class="text-3xl font-bold tracking-widest mb-2 text-white mt-5">Upcoming Events</p>
+            <p class="text-3xl font-bold tracking-widest mb-2 text-black mt-5">Upcoming Events</p>
             <div class="border border-2 w-48 ml-18 border-blue-300 mt-1"></div>
         </div>
     </div>
-    <div class="h-96 w-full" style="background-color:darkgrey;" id="gallery">
+    <div class="h-96 w-full" style="background-color:white;" id="gallery">
         <div class="flex flex-col justify-center items-center">
-            <p class="text-3xl font-bold tracking-widest mb-2 text-white mt-5">Gallery</p>
+            <p class="text-3xl font-bold tracking-widest mb-2 text-black mt-5">Gallery</p>
             <div class="border border-2 w-48 ml-18 border-blue-300 mt-1"></div>
         </div>
     </div>
-    <div class="h-96 w-full" style="background-color:darkgrey;" id="aboutus">
+    <div class="h-96 w-full" style="background-color:white;" id="aboutus">
         <div class="flex flex-col justify-center items-center">
-            <p class="text-3xl font-bold tracking-widest mb-2 text-white mt-5">About Us</p>
+            <p class="text-3xl font-bold tracking-widest mb-2 text-black mt-5">About Us</p>
             <div class="border border-2 w-48 ml-18 border-blue-300 mt-1"></div>
         </div>
     </div>
-    <div class="w-full" style="background-color:darkgrey;" id="footer">
+    <div class="w-full" style="background-color:white;" id="footer">
         <div class="container mx-auto px-6 py-6">
-            <div class="font-bold tracking-wider text-xs md:text-base text-white  text-center">
+            <div class="font-bold tracking-wider text-xs md:text-base text-black  text-center">
                 Copyright © 2022 <span>Auca Alumni Management System.</span> All rights reserved.
             </div>
         </div>

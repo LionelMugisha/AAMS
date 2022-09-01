@@ -56,7 +56,7 @@
                                     <form action="#" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="text-white font-bold py-2 px-4 rounded">
+                                        <button type="submit" class="font-bold py-2 px-4 rounded">
                                             Delete
                                         </button>
                                     </form>

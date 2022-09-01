@@ -45,6 +45,9 @@
                     <input type="email"
                         name="email"
                         class="block w-full px-4 py-2 mt-2 text-indigo-700 bg-white border rounded-md focus:border-indigo-400 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                        @error('email')
+                            <p class="text-red-500 py-1">{{ $message }}</p>
+                        @enderror
                 </div>
                 <div class="mt-4">
                     <div>
@@ -52,14 +55,20 @@
                         <input type="password"
                             name="password"
                             class="block w-full px-4 py-2 mt-2 text-indigo-700 bg-white border rounded-md focus:border-indigo-400 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                            @error('password')
+                                <p class="text-red-500 py-1">{{ $message }}</p>
+                            @enderror
                     </div>
-                    <div class="mt-6">
+                </div>
+                <div class="mt-6">
+                    <div>
                         <button
-                        type="submit"
-                            class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-indigo-700 rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600">
-                            Login
+                            type="submit"
+                                class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-indigo-700 rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600">
+                                Login
                         </button>
                     </div>
+                </div>
             </form>
         </div>
     </div>

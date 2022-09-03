@@ -94,6 +94,54 @@ class AdminController extends Controller
         }
     }
 
+    public function viewAlumni($id)
+    {
+        $alumni = User::find($id);
+        return view('admin.alumni.view', compact('alumni'));
+    }
+
+    public function deleteAlumni($id)
+    {
+        $alumni = User::find($id);
+
+        $res = $alumni->delete();
+
+        if($res)
+        {
+            Toastr::success('Alumni deleted successfully!', 'Success!');
+            return redirect('/admin/alumni');
+        } else 
+        {
+            Toastr::error('Something went wrong!', 'Warning!');
+            return redirect()->back();
+        }
+
+    }
+
+    public function viewMember($id)
+    {
+        $member = User::find($id);
+        return view('admin.member.view', compact('member'));
+    }
+
+    public function deleteMember($id)
+    {
+        $member = User::find($id);
+
+        $res = $member->delete();
+
+        if($res)
+        {
+            Toastr::success('Member deleted successfully!', 'Success!');
+            return redirect('/admin/member');
+        } else 
+        {
+            Toastr::error('Something went wrong!', 'Warning!');
+            return redirect()->back();
+        }
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -15,6 +15,7 @@
                             <th class="px-4 py-3">Employment</th>
                             <th class="px-4 py-3">Status</th>
                             <th class="px-4 py-3">Created at</th>
+                            <th class="px-4 py-3"></th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -49,6 +50,11 @@
                                 </td>
                                 <td class="px-4 py-3 text-sm">
                                     {{ $person->created_at }}
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    <button type="submit" class="font-bold py-2 px-4 rounded">
+                                        <a href="{{ url('admin/member/view-member/'.$person->id) }}">View</a>
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach

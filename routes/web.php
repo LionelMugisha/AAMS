@@ -65,10 +65,14 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function() {
     //Admin Alumni Routes
     Route::get('admin/alumni', [AdminController::class ,'alumniIndex'])->name('admin.alumni');
     Route::put('admin/updatealumni_status/{id}', [AdminController::class, 'achangestatus']);
+    Route::get('admin/alumni/view-alumni/{id}', [AdminController::class, 'viewAlumni']);
+    Route::delete('admin/alumni/delete-alumni/{id}', [AdminController::class, 'deleteAlumni']);
 
     //Admin Member Routes
     Route::get('admin/member', [AdminController::class ,'memberIndex'])->name('admin.member');
     Route::put('admin/updatemember_status/{id}', [AdminController::class, 'mchangestatus']);
+    Route::get('admin/member/view-member/{id}', [AdminController::class, 'viewMember']);
+    Route::delete('admin/member/delete-member/{id}', [AdminController::class, 'deleteMember']);
 
     //Admin Payment Routes
     Route::get('admin/view-payment', [PaymentController::class, 'view'])->name('admin.payment.view');

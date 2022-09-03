@@ -40,11 +40,13 @@ class EventController extends Controller
     {
         $event = new Event;
         $request->validate([
+            'name' => 'required|max:255',
             'details' => 'required|max:255',
             'timeHappening' => 'required',
             'dateHappening' => 'required',
             'picture' => 'required',
         ]);
+        $event->name = $request->input('name');
         $event->details = $request->input('details');
         $event->timeHappening = $request->input('timeHappening');
         $event->dateHappening = $request->input('dateHappening');
@@ -105,12 +107,14 @@ class EventController extends Controller
         $event = Event::find($id);
 
         $request->validate([
+            'name' => 'required|max:255',
             'details' => 'required|max:255',
             'timeHappening' => 'required',
             'dateHappening' => 'required',
             'picture' => 'required',
         ]);
 
+        $event->name = $request->input('name');
         $event->details = $request->input('details');
         $event->timeHappening = $request->input('timeHappening');
         $event->dateHappening = $request->input('dateHappening');
@@ -163,7 +167,7 @@ class EventController extends Controller
 
         if($res)
         {
-            Toastr::error('Event deleted successfully!', 'Success!');
+            Toastr::success('Event deleted successfully!', 'Success!');
             return redirect('/admin/event');
         } else 
         {

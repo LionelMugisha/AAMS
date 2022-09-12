@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
+use App\Models\Gallery;
 use Illuminate\Http\Request;
 
 class LandingController extends Controller
@@ -13,7 +15,9 @@ class LandingController extends Controller
      */
     public function index()
     {
-        return view('landing.index');
+        $gallery = Gallery::all();
+        $event = Event::all();
+        return view('landing.index', compact('gallery','event'));
     }
 
     /**

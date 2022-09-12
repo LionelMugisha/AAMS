@@ -8,6 +8,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use App\Mail\DecisionMail;
 use App\Mail\DecisionsMail;
 use Illuminate\Support\Facades\Mail;
+use PDF;
 
 class AdminController extends Controller
 {
@@ -140,6 +141,55 @@ class AdminController extends Controller
             return redirect()->back();
         }
 
+    }
+
+    public function viewTables()
+    {
+        $alumni = User::all()->where('role_id', 3)->where('status', 'active');
+        $alumnis = User::all()->where('role_id', 3)->where('status', 'active')->where('employment_status', 'unemployed');
+        $alumn = User::all()->where('role_id', 3)->where('status', 'active')->where('employment_status', 'employed');
+        $member = User::all()->where('role_id',2)->where('status', 'active');
+        return view('admin.report.view', compact('alumni','alumnis','alumn','member'));
+    }
+
+    public function export_alumni_pdf()
+    {
+        $alumni = User::all()->where('role_id', 3)->where('status', 'active');
+        $pdf = PDF::loadView('pdf.allumni', [
+            'alumni'=>$alumni
+        ]);
+        // return $pdf->stream();
+        return $pdf->download('allumni.pdf');
+    }
+
+    public function export_unemployed_alumni_pdf()
+    {
+        $alumni = User::all()->where('role_id', 3)->where('status', 'active')->where('employment_status', 'unemployed');
+        $pdf = PDF::loadView('pdf.unemployed', [
+            'alumni'=>$alumni
+        ]);
+        // return $pdf->stream();
+        return $pdf->download('unemployed.pdf');
+    }
+
+    public function export_employed_alumni_pdf()
+    {
+        $alumni = User::all()->where('role_id', 3)->where('status', 'active')->where('employment_status', 'employed');
+        $pdf = PDF::loadView('pdf.employed', [
+            'alumni'=>$alumni
+        ]);
+        // return $pdf->stream();
+        return $pdf->download('employed.pdf');
+    }
+
+    public function export_members_pdf()
+    {
+        $members = User::all()->where('role_id', 2)->where('status', 'active');
+        $pdf = PDF::loadView('pdf.members', [
+            'members'=>$members
+        ]);
+        // return $pdf->stream();
+        return $pdf->download('members.pdf');
     }
 
     /**

@@ -19,7 +19,7 @@
             Total Active Users
           </p>
           <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-            {{$active_users}}
+            {{ $active_users }}
           </p>
         </div>
       </div>
@@ -35,7 +35,7 @@
             Total Pending Users
           </p>
           <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-            {{$pending_users}}
+            {{ $pending_users }}
           </p>
         </div>
       </div>
@@ -51,50 +51,92 @@
             Total Job Opportunities
           </p>
           <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-            {{$total_posts}}
+            {{ $total_posts }}
           </p>
         </div>
       </div>
     </div>
   </div>
   @elsecan('member')
-  <div class="container px-6 mx-auto grid">
-    <h2 class="my-6 text-center text-2xl font-semibold text-gray-700 dark:text-gray-200">
-      Job Opportunities
-    </h2>
-    <div class="w-full overflow-hidden rounded-lg shadow-xs">
-      <div class="w-full overflow-x-auto">
-
+    <div class="container px-6 mx-auto grid">
+      <h2 class="my-6 text-2xl text-center font-semibold text-gray-700 dark:text-gray-200">
+        Events
+      </h2>
+      <!-- Cards -->
+      <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
+        <!-- Card -->
+        @foreach($events as $event)
+          <div class="max-w-xl bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+              <a href="#">
+                  <img class="rounded-t-xl w-full h-16" src="{{ asset('uploads/events/'.$event->picture) }}" alt="">
+              </a>
+              <div class="p-5">
+                  <a href="#">
+                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $event->name }}</h5>
+                  </a>
+                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ $event->details }}</p>
+                  <a href="#" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                      Read more
+                      <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                  </a>
+              </div>
+          </div>
+        @endforeach
       </div>
     </div>
-    <h2 class="my-6 text-center text-2xl font-semibold text-gray-700 dark:text-gray-200">
-      Events
-    </h2>
-    <div class="w-full overflow-hidden rounded-lg shadow-xs">
-      <div class="w-full overflow-x-auto">
-
-      </div>
-    </div>
-  </div>
   @elsecan('alumni')
-  <div class="container px-6 mx-auto grid">
-    <h2 class="my-6 text-center text-2xl font-semibold text-gray-700 dark:text-gray-200">
-      Job Opportunities
-    </h2>
-    <div class="w-full overflow-hidden rounded-lg shadow-xs">
-      <div class="w-full overflow-x-auto">
-
+    <div class="container px-6 mx-auto grid">
+      <h2 class="my-6 text-2xl text-center font-semibold text-gray-700 dark:text-gray-200">
+        Events
+      </h2>
+      <!-- Cards -->
+      <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
+        <!-- Card -->
+        @foreach($events as $event)
+          <div class="max-w-xl bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+              <a href="#">
+                  <img class="rounded-t-xl w-full h-16" src="{{ asset('uploads/events/'.$event->picture) }}" alt="">
+              </a>
+              <div class="p-5">
+                  <a href="#">
+                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $event->name }}</h5>
+                  </a>
+                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ $event->details }}</p>
+                  <a href="#" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                      Read more
+                      <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                  </a>
+              </div>
+          </div>
+        @endforeach
       </div>
     </div>
-    <h2 class="my-6 text-center text-2xl font-semibold text-gray-700 dark:text-gray-200">
-      Events
-    </h2>
-    <div class="w-full overflow-hidden rounded-lg shadow-xs">
-      <div class="w-full overflow-x-auto">
-
+    <div class="container px-6 mx-auto grid">
+      <h2 class="my-6 text-2xl text-center font-semibold text-gray-700 dark:text-gray-200">
+        Job Opportunities
+      </h2>
+      <!-- Cards -->
+      <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
+        <!-- Card -->
+        @foreach($jobs as $job)
+          <div class="max-w-xl bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+              <a href="#">
+                  <img class="rounded-t-xl w-full h-16" src="{{ asset('uploads/opportunities/'.$job->picture) }}" alt="">
+              </a>
+              <div class="p-5">
+                  <a href="#">
+                      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $job->name }}</h5>
+                  </a>
+                  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ $job->description }}</p>
+                  <a href="#" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                      Read more
+                      <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                  </a>
+              </div>
+          </div>
+        @endforeach
       </div>
     </div>
-  </div>
   @endcan
 
 </x-maindashboard>

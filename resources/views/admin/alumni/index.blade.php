@@ -14,6 +14,7 @@
                             <th class="px-4 py-3">Faculty/Department</th>
                             <th class="px-4 py-3">Status</th>
                             <th class="px-4 py-3">Year of Graduation</th>
+                            <th class="px-4 py-3">employment Status</th>
                             <th class="px-4 py-3">Created at</th>
                             <th class="px-4 py-3"></th>
                         </tr>
@@ -52,6 +53,9 @@
                                 </td>
                                 <td class="px-4 py-3 text-sm">
                                     {{ $grad->yearofgraduation }}
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    {{ $grad->employment_status }}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
                                     {{ $grad->created_at }}

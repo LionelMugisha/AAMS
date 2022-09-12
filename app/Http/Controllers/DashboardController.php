@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\Opportunity;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,8 +19,11 @@ class DashboardController extends Controller
         $activeusers = User::all()->where('status', 'active')->where('role_id', '!=',1)->count();
         $pendingusers = User::all()->where('status', 'inactive')->count();
         $totalopportunities = Opportunity::all()->count();
+        $events = Event::all();
+        $jobs = Opportunity::all();
         return view('auth.dashboard', [
-            'active_users'=>$activeusers,'pending_users'=>$pendingusers, 'total_posts'=>$totalopportunities
+            'active_users'=>$activeusers,'pending_users'=>$pendingusers, 'total_posts'=>$totalopportunities,
+            'events'=>$events, 'jobs'=>$jobs
         ]);
     }
 

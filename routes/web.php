@@ -77,6 +77,15 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function() {
     //Admin Payment Routes
     Route::get('admin/view-payment', [PaymentController::class, 'view'])->name('admin.payment.view');
 
+    //Admin Generate Report Routes
+    Route::get('admin/report', [AdminController::class, 'viewTables'])->name('admin.report');
+    Route::get('admin/report/report_all_alumni_pdf', [AdminController::class, 'export_alumni_pdf'])->name('export_alumni_pdf');
+    Route::get('admin/report/report_unemployed_alumni_pdf', [AdminController::class, 'export_unemployed_alumni_pdf'])->name('export_unemployed_alumni_pdf');
+    Route::get('admin/report/report_employed_alumni_pdf', [AdminController::class, 'export_employed_alumni_pdf'])->name('export_employed_alumni_pdf');
+    Route::get('admin/report/report_members_pdf', [AdminController::class, 'export_members_pdf'])->name('export_members_pdf');
+
+
+
 });
 
 

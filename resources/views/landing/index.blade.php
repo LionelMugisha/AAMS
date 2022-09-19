@@ -71,6 +71,7 @@
                 </p>
             </div>
             <div class="border border-2 border-white shadow-lg ml-6 mr-6">
+            {!! Toastr::message() !!}
                 <div class="flex items-center justify-center">
                     <div class="bg-white px-5 py-2">
                         <h3 class="text-medium font-normal mt-4 text-indigo-700 text-center">Get in Touch!</h3>
@@ -79,7 +80,7 @@
                             &nbsp;
                             Fill out the form below to contact our team.
                         </h3>
-                        <form method="POST" action="" autocomplete="off" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('save') }}" autocomplete="off" enctype="multipart/form-data">
                             @csrf
                             <div class="mt-4">
                                 <div>

@@ -72,7 +72,7 @@
                 </label>
                 <label class="block text-sm mb-6">
                     <span class="text-gray-700 dark:text-gray-400">Year of Graduation</span>
-                    <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" 
+                    <input class="hidden block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" 
                     type="text" name="yearofgraduation" value="{{ $user->yearofgraduation }}"  />
                     @error('yearofgraduation')
                         <p class="text-red-600 dark:text-red-400 py-1">{{ $message }}</p>
@@ -80,7 +80,7 @@
                 </label>
                 <label class="block text-sm mb-6">
                     <span class="text-gray-700 dark:text-gray-400">School ID</span>
-                    <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" 
+                    <input class="hidden block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" 
                     type="text" name="school_id"  value="{{ $user->school_id }}" />
                     @error('school_id')
                         <p class="text-red-600 dark:text-red-400 py-1">{{ $message }}</p>

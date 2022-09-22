@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 // use Hash;
 
 class RegistrationController extends Controller
@@ -34,6 +36,12 @@ class RegistrationController extends Controller
     public function create()
     {
         //
+    }
+
+    public function trial()
+    {
+        $result = DB::connection('mysql1')->table('graduates')->pluck('yearofgraduation');
+        return $result;
     }
 
     public function memberstore(Request $request)
@@ -68,6 +76,13 @@ class RegistrationController extends Controller
     {
         $user = new User();
 
+        $existUser = [];
+        $yog = [];
+        $existUser = DB::connection('mysql1')->table('graduates')->pluck('school_id');
+        $yog = DB::connection('mysql1')->table('graduates')->pluck('yearofgraduation');
+        $list = new Collection($existUser);
+        $years = new Collection($yog);
+
         $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
@@ -97,15 +112,27 @@ class RegistrationController extends Controller
         $user->employment_status = $request->employment_status;
         $user->employment = $request->employment;
         $user->password = Hash::make($request->password);
+        $user->status = 'active';
         $user->role_id = '3';
-        $res = $user->save();
-        if($res)
+
+        // if(in_array($request->school_id, $existUser))
+        if($list->contains($request->school_id) && $years->contains($request->yearofgraduation))
         {
-            Toastr::info('Registration successful, wait for the confirmation!', 'Notice!');
-            return redirect('/alumnisignup');
-        } else 
+            $res = $user->save();
+
+            if($res)
+            {
+                Toastr::success('Registration successful!', 'Success!');
+                return redirect('/alumnisignup');
+            } else 
+            {
+                Toastr::error('Something went wrong!', 'Warning!');
+                return redirect('/alumnisignup');
+            }
+        }
+        else 
         {
-            Toastr::error('Something went wrong!', 'Warning!');
+            Toastr::error('You are not apart of the school alumni!', 'Warning!');
             return redirect('/alumnisignup');
         }
     }

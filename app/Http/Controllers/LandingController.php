@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Gallery;
+use App\Models\Information;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
+
 
 class LandingController extends Controller
 {
@@ -18,6 +21,12 @@ class LandingController extends Controller
         $gallery = Gallery::all();
         $event = Event::all();
         return view('landing.index', compact('gallery','event'));
+    }
+    
+    public function view()
+    {
+        $info = Information::all();
+        return view('admin.contact.view', compact('info'));
     }
 
     /**
@@ -38,7 +47,21 @@ class LandingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $info = new Information;
+        $info->name = $request->input('name');
+        $info->email = $request->input('email');
+        $info->message = $request->input('message');
+        $res = $info->save();
+
+        if($res)
+        {
+            Toastr::success('Your inquiry has been submitted successfully!', 'Success!');
+            return redirect('/');
+        } else 
+        {
+            Toastr::error('Something went wrong!', 'Warning!');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -83,6 +106,18 @@ class LandingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $info = Information::find($id);
+
+        $res = $info->delete();
+
+        if($res)
+        {
+            Toastr::error('Inquiry deleted successfully!', 'Success!');
+            return redirect('/admin/inquiry');
+        } else 
+        {
+            Toastr::error('Something went wrong!', 'Warning!');
+            return redirect()->back();
+        }
     }
 }

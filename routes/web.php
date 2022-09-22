@@ -27,6 +27,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingController::class,'index'])->middleware('guest');
 
+// ContactUs Page Routes
+Route::post('/', [LandingController::class, 'store'])->name('save')->middleware('guest');
+
 // Login Routes
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'login'])->middleware('guest');
@@ -84,6 +87,9 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function() {
     Route::get('admin/report/report_employed_alumni_pdf', [AdminController::class, 'export_employed_alumni_pdf'])->name('export_employed_alumni_pdf');
     Route::get('admin/report/report_members_pdf', [AdminController::class, 'export_members_pdf'])->name('export_members_pdf');
 
+    //Inquiries Routes
+    Route::get('admin/inquiry', [LandingController::class, 'view'])->name('admin.inquiry');
+    Route::delete('admin/inquiry/delete-inquiry/{id}', [LandingController::class, 'destroy']);
 
 
 });
@@ -118,3 +124,5 @@ Route::group(['middleware' => ['auth', 'isAlumni']], function() {
     Route::get('/alumni/profile', [ProfileController::class, 'aledit'])->name('alumni.profile');
     Route::put('/alumni/profile/update-profile', [ProfileController::class, 'alupdate'])->name('alumni.update-profile');
 });
+
+// Route::get('/check', [RegistrationController::class, 'trial']);

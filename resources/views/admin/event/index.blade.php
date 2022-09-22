@@ -23,6 +23,7 @@
                             <th class="px-4 py-3">Name</th>
                             <th class="px-4 py-3">Picture</th>
                             <th class="px-4 py-3">Details</th>
+                            <th class="px-4 py-3">Taking Place</th>
                             <th class="px-4 py-3">Day Date</th>
                             <th class="px-4 py-3">Day Time</th>
                             <th class="px-4 py-3">Created At</th>
@@ -46,6 +47,9 @@
                                 </td>
                                 <td class="px-4 py-3 text-sm">
                                     {{ $item->details }}
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    {{ $item->place }}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
                                     {{ $item->dateHappening }}

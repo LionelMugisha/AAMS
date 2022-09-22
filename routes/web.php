@@ -124,3 +124,5 @@ Route::group(['middleware' => ['auth', 'isAlumni']], function() {
     Route::get('/alumni/profile', [ProfileController::class, 'aledit'])->name('alumni.profile');
     Route::put('/alumni/profile/update-profile', [ProfileController::class, 'alupdate'])->name('alumni.update-profile');
 });
+
+// Route::get('/check', [RegistrationController::class, 'trial']);

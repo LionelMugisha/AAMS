@@ -115,6 +115,9 @@
                     <div class="text-sm">
                       <span>Starting Hour: {{ $event->timeHappening }}</span>
                     </div>
+                    <div class="text-sm mb-2 mt-4 font-bold">
+                      <span>Location: {{ $event->place }}</span>
+                    </div>
                     
                   </div>
                   

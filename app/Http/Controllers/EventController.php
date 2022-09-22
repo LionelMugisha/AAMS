@@ -45,9 +45,11 @@ class EventController extends Controller
             'timeHappening' => 'required',
             'dateHappening' => 'required',
             'picture' => 'required',
+            'place' => 'required|max:255',
         ]);
         $event->name = $request->input('name');
         $event->details = $request->input('details');
+        $event->place = $request->input('place');
         $event->timeHappening = $request->input('timeHappening');
         $event->dateHappening = $request->input('dateHappening');
         if($request->hasFile('picture'))
@@ -112,10 +114,12 @@ class EventController extends Controller
             'timeHappening' => 'required',
             'dateHappening' => 'required',
             'picture' => 'required',
+            'place' => 'required|max:255',
         ]);
 
         $event->name = $request->input('name');
         $event->details = $request->input('details');
+        $event->place = $request->input('place');
         $event->timeHappening = $request->input('timeHappening');
         $event->dateHappening = $request->input('dateHappening');
         if($request->hasFile('picture'))

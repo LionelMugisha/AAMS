@@ -28,8 +28,13 @@ class OpportunityController extends Controller
     public function asavepost(Request $request)
     {
         $post = new Opportunity;
+        $request->validate([
+            'name' => 'required|max:255',
+            'position' => 'required|max:255',
+            'picture' => 'required',
+        ]);
         $post->name = $request->input('name');
-        $post->description = $request->input('description');
+        $post->position = $request->input('position');
         $post->user_id = auth()->user()->id;
         if($request->hasFile('picture'))
         {
@@ -71,12 +76,12 @@ class OpportunityController extends Controller
 
         $request->validate([
             'name' => 'required|max:255',
-            'description' => 'required|max:255',
+            'position' => 'required|max:255',
             'picture' => 'required',
         ]);
 
         $post->name = $request->input('name');
-        $post->description = $request->input('description');
+        $post->position = $request->input('position');
         $post->user_id = auth()->user()->id;
         if($request->hasFile('picture'))
         {
@@ -118,12 +123,12 @@ class OpportunityController extends Controller
 
         $request->validate([
             'name' => 'required|max:255',
-            'description' => 'required|max:255',
+            'position' => 'required|max:255',
             'picture' => 'required',
         ]);
 
         $post->name = $request->input('name');
-        $post->description = $request->input('description');
+        $post->position = $request->input('position');
         $post->user_id = auth()->user()->id;
         if($request->hasFile('picture'))
         {
@@ -209,8 +214,76 @@ class OpportunityController extends Controller
      * @param  \App\Models\Opportunity  $opportunity
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Opportunity $opportunity)
+    public function aludestroy($id)
     {
-        //
+        $opportunity = Opportunity::find($id)->where('user_id',auth()->user()->id);
+        
+        $destination = 'uploads/post/'.$opportunity->picture;
+        
+        if (File::exists($destination)) 
+        {
+            File::delete($destination);
+        }
+
+        $res = $opportunity->delete();
+
+        if($res)
+        {
+            Toastr::success('Job opportunity deleted successfully!', 'Success!');
+            return redirect('/alumni/job_opportunities');
+        } else 
+        {
+            Toastr::error('Something went wrong!', 'Warning!');
+            return redirect()->back();
+        }
+    }
+
+    public function mdestory($id)
+    {
+        $opportunity = Opportunity::find($id)->where('user_id',auth()->user()->id);
+        
+        $destination = 'uploads/post/'.$opportunity->picture;
+        
+        if (File::exists($destination)) 
+        {
+            File::delete($destination);
+        }
+
+        $res = $opportunity->delete();
+
+        if($res)
+        {
+            Toastr::success('Job opportunity deleted successfully!', 'Success!');
+            return redirect('/member/job_opportunities');
+        } else 
+        {
+            Toastr::error('Something went wrong!', 'Warning!');
+            return redirect()->back();
+        }
+
+    }
+
+    public function admindestroy($id)
+    {
+        $opportunity = Opportunity::find($id);
+        
+        $destination = 'uploads/post/'.$opportunity->picture;
+        
+        if (File::exists($destination)) 
+        {
+            File::delete($destination);
+        }
+
+        $res = $opportunity->delete();
+
+        if($res)
+        {
+            Toastr::success('Job opportunity deleted successfully!', 'Success!');
+            return redirect('/admin/job_opportunities');
+        } else 
+        {
+            Toastr::error('Something went wrong!', 'Warning!');
+            return redirect()->back();
+        }
     }
 }

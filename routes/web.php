@@ -64,6 +64,7 @@ Route::group(['middleware' => ['auth', 'isAdmin']], function() {
     Route::get('/admin/job_opportunities', [OpportunityController::class, 'aindex'])->name('admin.opportunities');
     Route::get('/admin/job_opportunities/new', [OpportunityController::class, 'acreatepost'])->name('admin.opportunities.create');
     Route::post('/admin/job_opportunities/save', [OpportunityController::class, 'asavepost'])->name('admin.opportunities.save');
+    Route::delete('/admin/job_opportunities/delete-job/{id}', [OpportunityController::class, 'admindestroy']);
 
     //Admin Alumni Routes
     Route::get('admin/alumni', [AdminController::class ,'alumniIndex'])->name('admin.alumni');
@@ -102,6 +103,7 @@ Route::group(['middleware' => ['auth', 'isMember']], function() {
     Route::get('/member/job_opportunities', [OpportunityController::class, 'mindex'])->name('member.opportunities');
     Route::get('/member/job_opportunities/new', [OpportunityController::class, 'mcreatepost'])->name('member.opportunities.create');
     Route::post('/member/job_opportunities/save', [OpportunityController::class, 'msavepost'])->name('member.opportunities.save');
+    Route::delete('/member/job_opportunities/delete-job/{id}', [OpportunityController::class, 'mdestroy']);
     //Member Payment Routes
     Route::get('/member/place-payment', [PaymentController::class, 'index'])->name('member.payment');
     Route::get('/member/place-payment/new', [PaymentController::class, 'create'])->name('member.payment.create');
@@ -120,6 +122,7 @@ Route::group(['middleware' => ['auth', 'isAlumni']], function() {
     Route::get('/alumni/job_opportunities', [OpportunityController::class, 'aluindex'])->name('alumni.opportunities');
     Route::get('/alumni/job_opportunities/new', [OpportunityController::class, 'alucreatepost'])->name('alumni.opportunities.create');
     Route::post('/alumni/job_opportunities/save', [OpportunityController::class, 'alusavepost'])->name('alumni.opportunities.save');
+    Route::delete('/alumni/job_opportunities/delete-job/{id}', [OpportunityController::class, 'aludestroy']);
     //Alumni Profile Routes
     Route::get('/alumni/profile', [ProfileController::class, 'aledit'])->name('alumni.profile');
     Route::put('/alumni/profile/update-profile', [ProfileController::class, 'alupdate'])->name('alumni.update-profile');

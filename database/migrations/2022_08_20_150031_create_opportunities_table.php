@@ -16,7 +16,7 @@ class CreateOpportunitiesTable extends Migration
         Schema::create('opportunities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
+            $table->string('position');
             $table->string('picture');
             $table->ForeignId('user_id');
             $table->timestamps();

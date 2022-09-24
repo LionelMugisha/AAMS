@@ -21,7 +21,7 @@
                     <thead>
                         <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                             <th class="px-4 py-3">Name</th>
-                            <th class="px-4 py-3">Details</th>
+                            <th class="px-4 py-3">Position</th>
                             <th class="px-4 py-3">Picture</th>
                             <th class="px-4 py-3">Posted By</th>
                             <th class="px-4 py-3">Created At</th>
@@ -35,7 +35,7 @@
                                     {{ $opportunity->name }}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{ $opportunity->description }}
+                                    {{ $opportunity->position }}
                                 </td>
                                 <td class="px-4 py-3">
                                     <div class="flex items-center text-sm">
@@ -53,7 +53,7 @@
                                     {{ $opportunity->created_at }}
                                 </td>
                                 <td class="px-4 py-3 text-sm flex">
-                                    <form action="#" method="POST">
+                                    <form action="{{ url('alumni/job_opportunities/delete-job/'.$opportunity->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="font-bold py-2 px-4 rounded">
